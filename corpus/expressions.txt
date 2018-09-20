@@ -1,0 +1,187 @@
+============================================
+Number literals
+============================================
+
+Run() {
+  a = 123;
+  b = 0.123;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+       assignment_statement (identifier) (number_literal)
+       assignment_statement (identifier) (number_literal))))
+
+============================================
+Common constants
+============================================
+
+Run() {
+  a = true;
+  b = false;
+  c = null;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (true))
+      (assignment_statement (identifier) (false))
+      (assignment_statement (identifier) (null)))))
+
+============================================
+Function calls
+============================================
+
+Run() {
+  CreateSparseArray(1, a);
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (expression_statement (call_expression
+        (identifier)
+        (argument_list (number_literal) (identifier)))))))
+
+============================================
+String literals
+============================================
+
+Run() {
+  a = 'ab';
+  b = '\'hi\'';
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (string_literal))
+      (expression_statement (string_literal (escape_sequence) (escape_sequence))))))
+
+============================================
+Character literals
+============================================
+
+Run() {
+  a = 'a';
+  a = '\0';
+  a = '\t';
+  a = '\'';
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (char_literal))
+      (assignment_statement (identifier) (char_literal (escape_sequence)))
+      (assignment_statement (identifier) (char_literal (escape_sequence)))
+      (assignment_statement (identifier) (char_literal (escape_sequence))))))
+
+============================================
+Field access
+============================================
+
+Run() {
+  a = s.data1;
+  a = q[data3];
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (field_expression (identifier) (field_identifier)))
+      (assignment_statement (identifier) (subscript_expression (identifier) (identifier))))))
+
+============================================
+Boolean operators
+============================================
+
+Run() {
+    a = i or j;
+    a = i and j;
+    a = not b;
+    a = not a and not b or not c and not d;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (unary_expression (identifier)))
+      (assignment_statement (identifier) (binary_expression
+        (binary_expression
+          (binary_expression (unary_expression (identifier)) (unary_expression (identifier)))
+          (unary_expression (identifier)))
+        (unary_expression (identifier))))
+
+
+============================================
+Math operators
+============================================
+
+Run() {
+  a = -a / b + c * -d;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (binary_expression
+        (binary_expression
+            (binary_expression
+                (unary_expression (identifier)) (identifier))
+            (identifier))
+        (unary_expression (identifier)))))))
+
+
+============================================
+String concatenation
+============================================
+
+Run() {
+  a = 'a' & c;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (binary_expression (string_literal) (identifier))))
+
+
+============================================
+String concatenation
+============================================
+
+Run() {
+  @a = 1;
+  b = @a;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (indirection_expression) (number_literal))
+      (assignment_statement (identifier) (indirection_expression)))))

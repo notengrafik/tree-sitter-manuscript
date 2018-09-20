@@ -1,0 +1,182 @@
+============================================
+Assignments
+============================================
+
+Run() {
+  d.e = 3;
+  h[i] = j;
+  Self._property:a = b;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (field_expression (identifier) (field_identifier)) (number_literal))
+      (assignment_statement (subscript_expression (identifier) (identifier)) (identifier)))))
+      (assignment_statement (user_property_expression (identifier) (identifier)) (identifier)))))
+
+============================================
+Empty statements
+============================================
+
+Run() {
+  ;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (empty_statement))))
+
+============================================
+If statements
+============================================
+
+Run() {
+  if (!a) {
+    a = 2;
+  } else {
+    a = 3;
+  }
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (if_statement (parenthesized_expression (unary_expression (identifier)))
+        (statement_block
+          (assignment_statement (identifier) (number_literal)))
+        (statement_block
+          (assignment_statement (identifier) (number_literal)))))))
+
+============================================
+For loops
+============================================
+
+Run() {
+  for i = 1 to 5 {
+    ;
+  }
+
+  for i = a.b to foo() {
+    ;
+  }
+
+  for each a in b {
+    ;
+  }
+
+  for each NoteRest a in selection {
+    ;
+  }
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (for_statement
+        (identifier) (number_literal) (number_literal) (empty_statement))
+      (for_statement
+        (identifier) (number_literal) (number_literal) (empty_statement))
+      (for_each_statement
+        (identifier) (identifier) (statement_block
+          (empty_statement)))
+      (typed_for_each_statement
+        (identifier) (identifier) (identifier) (statement_block
+          (empty_statement))))))
+
+============================================
+While loops
+============================================
+
+Run() {
+  while (x) {
+    Trace('hi');
+  }
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (while_statement (parenthesized_expression (identifier))
+        (statement_block (call_expression
+          (identifier)
+          (argument_list (string_literal))))))))
+
+
+============================================
+Comments
+============================================
+
+Run() {
+  /*************************
+   * odd number of asterisks
+   *************************/
+  ;
+
+  /**************************
+   * even number of asterisks
+   **************************/
+  ;
+
+  // one-line comment
+}
+
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (comment)
+      (empty_statement)
+      (comment)
+      (empty_statement)
+      (comment))))
+
+============================================
+Switch statements
+============================================
+
+Run() {
+  switch (x) {
+    case (1) {
+        ;
+    }
+    case (2) {
+      something();
+    }
+    case ('three') {
+      somethingElse();
+    }
+    default {
+      return 4;
+    }
+  }
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (switch_statement (parenthesized_expression (identifier)) (switch_body
+        (switch_case (number) (statement_block (empty_statement)))
+        (switch_case (number)
+          (expression_statement (call_expression (identifier) (arguments)))
+          (break_statement))
+        (switch_case (string)
+          (expression_statement (call_expression (identifier) (arguments)))
+          (break_statement))
+        (switch_default
+          (return_statement (number))))))
