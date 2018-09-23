@@ -2,7 +2,7 @@
 Number literals
 ============================================
 
-Run() {
+function Run() {
   a = 123;
   b = 0.123;
 }
@@ -12,14 +12,14 @@ Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
-       assignment_statement (identifier) (number_literal)
-       assignment_statement (identifier) (number_literal))))
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal)))))
 
 ============================================
 Common constants
 ============================================
 
-Run() {
+function Run() {
   a = true;
   b = false;
   c = null;
@@ -38,7 +38,7 @@ Run() {
 Function calls
 ============================================
 
-Run() {
+function Run() {
   CreateSparseArray(1, a);
 }
 
@@ -47,7 +47,7 @@ Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
-      (expression_statement (call_expression
+      (call_statement (call_expression
         (identifier)
         (argument_list (number_literal) (identifier)))))))
 
@@ -55,7 +55,7 @@ Run() {
 String literals
 ============================================
 
-Run() {
+function Run() {
   a = 'ab';
   b = '\'hi\'';
 }
@@ -66,13 +66,13 @@ Run() {
   (function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (string_literal))
-      (expression_statement (string_literal (escape_sequence) (escape_sequence))))))
+      (assignment_statement (identifier) (string_literal)))))
 
 ============================================
 Character literals
 ============================================
 
-Run() {
+function Run() {
   a = 'a';
   a = '\0';
   a = '\t';
@@ -85,17 +85,18 @@ Run() {
   (function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (char_literal))
-      (assignment_statement (identifier) (char_literal (escape_sequence)))
-      (assignment_statement (identifier) (char_literal (escape_sequence)))
-      (assignment_statement (identifier) (char_literal (escape_sequence))))))
+      (assignment_statement (identifier) (char_literal))
+      (assignment_statement (identifier) (char_literal))
+      (assignment_statement (identifier) (char_literal)))))
 
 ============================================
 Field access
 ============================================
 
-Run() {
+function Run() {
   a = s.data1;
   a = q[data3];
+  a = b[0]._property:c;
 }
 
 ---
@@ -103,14 +104,17 @@ Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
-      (assignment_statement (identifier) (field_expression (identifier) (field_identifier)))
-      (assignment_statement (identifier) (subscript_expression (identifier) (identifier))))))
+      (assignment_statement (identifier) (field_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (subscript_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (user_property_expression
+        (subscript_expression (identifier) (number_literal))
+        (identifier))))))
 
 ============================================
 Boolean operators
 ============================================
 
-Run() {
+function Run() {
     a = i or j;
     a = i and j;
     a = not b;
@@ -129,14 +133,14 @@ Run() {
         (binary_expression
           (binary_expression (unary_expression (identifier)) (unary_expression (identifier)))
           (unary_expression (identifier)))
-        (unary_expression (identifier))))
+        (unary_expression (identifier)))))))
 
 
 ============================================
 Math operators
 ============================================
 
-Run() {
+function Run() {
   a = -a / b + c * -d;
 }
 
@@ -157,8 +161,8 @@ Run() {
 String concatenation
 ============================================
 
-Run() {
-  a = 'a' & c;
+function Run() {
+  a = 'ab' + c;
 }
 
 ---
@@ -166,14 +170,14 @@ Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
-      (assignment_statement (identifier) (binary_expression (string_literal) (identifier))))
+      (assignment_statement (identifier) (binary_expression (string_literal) (identifier))))))
 
 
 ============================================
-String concatenation
+Indirection
 ============================================
 
-Run() {
+function Run() {
   @a = 1;
   b = @a;
 }

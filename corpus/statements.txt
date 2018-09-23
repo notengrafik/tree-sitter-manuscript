@@ -2,7 +2,7 @@
 Assignments
 ============================================
 
-Run() {
+function Run() {
   d.e = 3;
   h[i] = j;
   Self._property:a = b;
@@ -13,15 +13,15 @@ Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
-      (assignment_statement (field_expression (identifier) (field_identifier)) (number_literal))
-      (assignment_statement (subscript_expression (identifier) (identifier)) (identifier)))))
+      (assignment_statement (field_expression (identifier) (identifier)) (number_literal))
+      (assignment_statement (subscript_expression (identifier) (identifier)) (identifier))
       (assignment_statement (user_property_expression (identifier) (identifier)) (identifier)))))
 
 ============================================
 Empty statements
 ============================================
 
-Run() {
+function Run() {
   ;
 }
 
@@ -36,8 +36,8 @@ Run() {
 If statements
 ============================================
 
-Run() {
-  if (!a) {
+function Run() {
+  if (not a) {
     a = 2;
   } else {
     a = 3;
@@ -59,7 +59,7 @@ Run() {
 For loops
 ============================================
 
-Run() {
+function Run() {
   for i = 1 to 5 {
     ;
   }
@@ -97,7 +97,7 @@ Run() {
 While loops
 ============================================
 
-Run() {
+function Run() {
   while (x) {
     Trace('hi');
   }
@@ -109,16 +109,16 @@ Run() {
   (function (identifier) (parameter_list)
     (statement_block
       (while_statement (parenthesized_expression (identifier))
-        (statement_block (call_expression
+        (statement_block (call_statement (call_expression
           (identifier)
-          (argument_list (string_literal))))))))
+          (argument_list (string_literal)))))))))
 
 
 ============================================
 Comments
 ============================================
 
-Run() {
+function Run() {
   /*************************
    * odd number of asterisks
    *************************/
@@ -148,7 +148,7 @@ Run() {
 Switch statements
 ============================================
 
-Run() {
+function Run() {
   switch (x) {
     case (1) {
         ;
