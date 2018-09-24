@@ -6,6 +6,7 @@ function Run() {
   d.e = 3;
   h[i] = j;
   Self._property:a = b;
+  a = 1 = 2;
 }
 
 ---
@@ -15,7 +16,8 @@ function Run() {
     (statement_block
       (assignment_statement (field_expression (identifier) (identifier)) (number_literal))
       (assignment_statement (subscript_expression (identifier) (identifier)) (identifier))
-      (assignment_statement (user_property_expression (identifier) (identifier)) (identifier)))))
+      (assignment_statement (user_property_expression (identifier) (identifier)) (identifier))
+      (assignment_statement (identifier) (binary_expression (number_literal) (number_literal))))))
 
 ============================================
 Empty statements

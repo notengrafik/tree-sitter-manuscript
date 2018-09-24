@@ -158,6 +158,48 @@ function Run() {
 
 
 ============================================
+Binary operators
+============================================
+
+function Run() {
+  a = a + b;
+  a = a - b;
+  a = a * b;
+  a = a / b;
+  a = a % b;
+  a = a = b;
+  a = a < b;
+  a = a > b;
+  a = a <= b;
+  a = a >= b;
+  a = a != b;
+  a = a & b;
+  a = a and b;
+  a = a or b;
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (binary_expression (identifier) (identifier))))))
+
+
+============================================
 String concatenation
 ============================================
 

@@ -20,6 +20,7 @@ const PREC = {
   CALL: 14,
   /*FIELD: 15,
   SUBSCRIPT: 16*/
+  ASSIGNMENT: 20,
 };
 
 const identifierPattern = '[a-zA-Z_][a-zA-Z0-9_]*';
@@ -143,7 +144,7 @@ module.exports = grammar({
 
     binary_expression: $ => prec.left(PREC.BINARY, seq(
       $._expression,
-      choice('or', 'and', '+', '-', '*', '/', '&'),
+      choice('or', 'and', '+', '-', '*', '/', '%', '&', '=', '!=', '>', '<', '<=', '>='),
       $._expression
     )),
 
