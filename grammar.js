@@ -1,6 +1,6 @@
 const PREC = {
+  COMMENT: -1,
   //PAREN_DECLARATOR: -10,
-  ASSIGNMENT: -1,
   /*CONDITIONAL: -2,
   DEFAULT: 0,
   LOGICAL_OR: 1,
@@ -223,8 +223,7 @@ module.exports = grammar({
 
     string_literal: $ => seq(
       "'",
-      optional(seq($._char, repeat1($._char))
-      ),
+      optional(seq($._char, repeat1($._char))),
       "'"
     ),
 
@@ -241,14 +240,14 @@ module.exports = grammar({
     parenthesized_expression: $ => seq('(', $._expression, ')'),
 
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
-    comment: $ => token(choice(
+    comment: $ => token(prec(PREC.COMMENT, choice(
       seq('//', /.*/),
       seq(
         '/*',
         /[^*]*\*+([^/*][^*]*\*+)*/,
         '/'
       )
-    )),
+    ))),
   }
 });
 

@@ -58,6 +58,7 @@ String literals
 function Run() {
   a = 'ab';
   b = '\'hi\'';
+  c = 'http://example.com/';
 }
 
 ---
@@ -65,6 +66,7 @@ function Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
+      (assignment_statement (identifier) (string_literal))
       (assignment_statement (identifier) (string_literal))
       (assignment_statement (identifier) (string_literal)))))
 
