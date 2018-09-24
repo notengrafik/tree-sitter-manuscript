@@ -1,25 +1,8 @@
 const PREC = {
   COMMENT: -1,
-  //PAREN_DECLARATOR: -10,
-  /*CONDITIONAL: -2,
-  DEFAULT: 0,
-  LOGICAL_OR: 1,
-  LOGICAL_AND: 2,
-  INCLUSIVE_OR: 3,
-  EXCLUSIVE_OR: 4,
-  BITWISE_AND: 5,
-  EQUAL: 6,
-  RELATIONAL: 7,
-  SIZEOF: 8,
-  SHIFT: 9,
-  ADD: 10,
-  MULTIPLY: 11,
-  CAST: 12,*/
   BINARY: 11,
   UNARY: 13,
   CALL: 14,
-  /*FIELD: 15,
-  SUBSCRIPT: 16*/
   ASSIGNMENT: 20,
 };
 
@@ -155,15 +138,10 @@ module.exports = grammar({
     _expression: $ => choice(
       $.unary_expression,
       $.binary_expression,
-      /*$.equality_expression,
-      $.relational_expression,
-      $.shift_expression,
-      $.math_expression,*/
       $.subscript_expression,
       $.call_expression,
       $.field_expression,
       $.user_property_expression,
-      /*$.compound_literal_expression,*/
       $.indirection_expression,
       $.identifier,
       $.number_literal,
@@ -171,7 +149,6 @@ module.exports = grammar({
       $.true,
       $.false,
       $.null,
-      //$.concatenated_string,
       $.char_literal,
       $.parenthesized_expression
     ),
