@@ -176,7 +176,7 @@ module.exports = grammar({
     field_expression: $ => seq(
         choice($.identifier, $.field_expression, $.subscript_expression),
         '.',
-        $.identifier
+        choice($.identifier, $.indirection_expression)
     ),
 
     user_property_expression: $ => seq(
