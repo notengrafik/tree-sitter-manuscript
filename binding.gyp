@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "tree_sitter_mss_binding",
+      "target_name": "tree_sitter_manuscript_binding",
       "include_dirs": [
         "<!(node -e \"require('nan')\")",
         "src"

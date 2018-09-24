@@ -10,7 +10,7 @@ const identifierPattern = '[a-zA-Z_][a-zA-Z0-9_]*';
 
 
 module.exports = grammar({
-  name: 'mss',
+  name: 'manuscript',
 
   extras: $ => [
     /\s/,
