@@ -62,10 +62,9 @@ module.exports = grammar({
       $.assignment_statement,
       $.call_statement,
       $.if_statement,
-      /*$.switch_statement,
+      $.switch_statement,
       $.for_statement,
       $.for_each_statement,
-      $.typed_for_each_statement,*/
       $.while_statement,
       $.return_statement,
       $.empty_statement,
@@ -97,6 +96,26 @@ module.exports = grammar({
         'else',
         $.statement_block
       ))
+    ),
+
+    switch_statement: $ => seq(
+      'switch',
+      $.parenthesized_expression,
+      '{',
+      repeat($.switch_case),
+      optional($.switch_default),
+      '}'
+    ),
+
+    switch_case: $ => seq(
+      'case',
+      $.parenthesized_expression,
+      $.statement_block
+    ),
+
+    switch_default: $ => seq(
+      'default',
+      $.statement_block
     ),
 
     for_statement: $ => seq(
