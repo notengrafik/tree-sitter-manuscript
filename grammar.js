@@ -99,6 +99,26 @@ module.exports = grammar({
       ))
     ),
 
+    for_statement: $ => seq(
+      'for',
+      $.identifier,
+      '=',
+      $._expression,
+      'to',
+      $._expression,
+      $.statement_block
+    ),
+
+    for_each_statement: $ => seq(
+      'for',
+      'each',
+      optional($.identifier),
+      $.identifier,
+      'in',
+      $._expression,
+      $.statement_block
+    ),
+
     empty_statement: $ => seq(';'),
 
     while_statement: $ => seq(

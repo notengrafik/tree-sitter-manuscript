@@ -85,13 +85,16 @@ function Run() {
   (function (identifier) (parameter_list)
     (statement_block
       (for_statement
-        (identifier) (number_literal) (number_literal) (empty_statement))
+        (identifier) (number_literal) (number_literal) (statement_block (empty_statement)))
       (for_statement
-        (identifier) (number_literal) (number_literal) (empty_statement))
+        (identifier)
+        (field_expression (identifier) (identifier))
+        (call_expression (identifier) (argument_list))
+        (statement_block (empty_statement)))
       (for_each_statement
         (identifier) (identifier) (statement_block
           (empty_statement)))
-      (typed_for_each_statement
+      (for_each_statement
         (identifier) (identifier) (identifier) (statement_block
           (empty_statement))))))
 
