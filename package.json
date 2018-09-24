@@ -1,0 +1,25 @@
+{
+  "name": "tree-sitter-manuscript",
+  "version": "0.0.0",
+  "description": "Sibelius ManuScript (Tido-MSS form) grammar for node-tree-sitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/tree-sitter generate && npm install && node_modules/.bin/tree-sitter test"
+  },
+  "author": "Thomas Weber",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.13.10"
+  },
+  "dependencies": {
+    "nan": "^2.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/weberth/tree-sitter-manuscript.git"
+  },
+  "keywords": [
+    "parser",
+    "lexer"
+  ],
+  "homepage": "https://bitbucket.org/weberth/tree-sitter-manuscript#readme"
+}
