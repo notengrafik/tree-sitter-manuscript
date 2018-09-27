@@ -102,6 +102,7 @@ function Run() {
   a = b.@c;
   a = q[data3];
   a = f().foo;
+  a = f().foo();
   a = f()[0];
   a = b[0]._property:c;
 }
@@ -117,6 +118,11 @@ function Run() {
       (assignment_statement (identifier) (field_expression
         (call_expression (identifier) (argument_list))
         (identifier)))
+      (assignment_statement (identifier) (call_expression
+        (field_expression
+          (call_expression (identifier) (argument_list))
+          (identifier))
+        (argument_list)))
       (assignment_statement (identifier) (subscript_expression
         (call_expression (identifier) (argument_list))
         (number_literal)))
@@ -129,10 +135,10 @@ Boolean operators
 ============================================
 
 function Run() {
-    a = i or j;
-    a = i and j;
-    a = not b;
-    a = not a and not b or not c and not d;
+  a = i or j;
+  a = i and j;
+  a = not b;
+  a = not a and not b or not c and not d;
 }
 
 ---
