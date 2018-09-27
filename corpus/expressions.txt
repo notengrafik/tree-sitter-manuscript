@@ -101,6 +101,8 @@ function Run() {
   a = s.data1;
   a = b.@c;
   a = q[data3];
+  a = f().foo;
+  a = f()[0];
   a = b[0]._property:c;
 }
 
@@ -112,6 +114,12 @@ function Run() {
       (assignment_statement (identifier) (field_expression (identifier) (identifier)))
       (assignment_statement (identifier) (field_expression (identifier) (indirection_expression)))
       (assignment_statement (identifier) (subscript_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (field_expression
+        (call_expression (identifier) (argument_list))
+        (identifier)))
+      (assignment_statement (identifier) (subscript_expression
+        (call_expression (identifier) (argument_list))
+        (number_literal)))
       (assignment_statement (identifier) (user_property_expression
         (subscript_expression (identifier) (number_literal))
         (identifier))))))

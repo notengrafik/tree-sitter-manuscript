@@ -165,7 +165,7 @@ module.exports = grammar({
     )),
 
     subscript_expression: $ => seq(
-      choice($.identifier, $.field_expression),
+      choice($.identifier, $.field_expression, $.call_expression),
       '[',
       $._expression,
       ']'
@@ -174,7 +174,7 @@ module.exports = grammar({
     call_expression: $ => prec(PREC.CALL, seq($._expression, $.argument_list)),
 
     field_expression: $ => seq(
-        choice($.identifier, $.field_expression, $.subscript_expression),
+        choice($.identifier, $.field_expression, $.subscript_expression, $.call_expression),
         '.',
         choice($.identifier, $.indirection_expression)
     ),
