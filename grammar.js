@@ -194,8 +194,8 @@ module.exports = grammar({
     number_literal: $ => /\d+(\.\d+)?/,
 
     _char: $ => choice(
-      /[^'\\]/,
-      /\\./
+      /[^'"\\]/,
+      /\\[^"]/
     ),
 
     string_literal: $ => seq(

@@ -1,0 +1,34 @@
+============================================
+Invalid field access
+============================================
+
+function Run() {
+  a = a[0][0];
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (ERROR (subscript_expression
+        (identifier)
+        (ERROR (subscript_expression (identifier) (number_literal)))
+        (number_literal))) (empty_statement))))
+
+============================================
+Invalid strings
+============================================
+
+function Run() {
+  a = 'foo"';
+  a = '"';
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+      (assignment_statement (identifier) (string_literal (ERROR (UNEXPECTED '"'))))
+      (assignment_statement (identifier) (string_literal (ERROR (UNEXPECTED '"')))))))
