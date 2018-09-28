@@ -101,9 +101,6 @@ function Run() {
   a = s.data1;
   a = b.@c;
   a = q[data3];
-  a = f().foo;
-  a = f().foo();
-  a = f()[0];
   a = b[0]._property:c;
 }
 
@@ -115,6 +112,27 @@ function Run() {
       (assignment_statement (identifier) (field_expression (identifier) (identifier)))
       (assignment_statement (identifier) (field_expression (identifier) (indirection_expression)))
       (assignment_statement (identifier) (subscript_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (user_property_expression
+        (subscript_expression (identifier) (number_literal))
+        (identifier))))))
+
+============================================
+Field access with call expressions
+============================================
+
+function Run() {
+  a = f().foo;
+  a = f().foo();
+  a = b.f().foo();
+  a = f()[0];
+  a = x.f(2, a.b().c, 'foo');
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
       (assignment_statement (identifier) (field_expression
         (call_expression (identifier) (argument_list))
         (identifier)))
@@ -123,12 +141,24 @@ function Run() {
           (call_expression (identifier) (argument_list))
           (identifier))
         (argument_list)))
+      (assignment_statement (identifier) (call_expression
+        (field_expression
+          (call_expression (field_expression (identifier) (identifier)) (argument_list))
+          (identifier))
+        (argument_list)))
       (assignment_statement (identifier) (subscript_expression
         (call_expression (identifier) (argument_list))
         (number_literal)))
-      (assignment_statement (identifier) (user_property_expression
-        (subscript_expression (identifier) (number_literal))
-        (identifier))))))
+      (assignment_statement (identifier) (call_expression
+        (field_expression (identifier) (identifier))
+        (argument_list
+          (number_literal)
+          (field_expression
+            (call_expression
+              (field_expression (identifier) (identifier))
+              (argument_list))
+            (identifier))
+          (string_literal)))))))
 
 ============================================
 Boolean operators
