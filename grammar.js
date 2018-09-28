@@ -1,5 +1,5 @@
 const PREC = {
-  COMMENT: -1,
+  COMMENT: 1,
   BINARY: 11,
   UNARY: 13,
   CALL: 14,
@@ -200,19 +200,21 @@ module.exports = grammar({
 
     string_literal: $ => seq(
       "'",
-      optional(seq($._char, repeat1($._char))),
+      repeat(choice(
+        token.immediate(repeat1(/[^'"\\]/)),
+        token.immediate(/\\[^"]/)
+      )),
       "'"
+    ),
+
+    char_literal: $ => choice(
+      /'[^'"\\]'/,
+      /'\\[^"]'/
     ),
 
     true: $ => 'true',
     false: $ => 'false',
     null: $ => 'null',
-
-    char_literal: $ => seq(
-      "'",
-      $._char,
-      "'"
-    ),
 
     parenthesized_expression: $ => seq('(', $._expression, ')'),
 

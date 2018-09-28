@@ -57,9 +57,13 @@ String literals
 
 function Run() {
   a = 'ab';
-  b = '\'hi\'';
-  c = 'http://example.com/';
-  c = '';
+  a = '\'hi\'';
+  a = 'Alice\'s';
+  a = 'http://example.com/';
+  a = 'Füße';
+  a = 'foo bar baz';
+  a = '';
+  a = '\0\1';
 }
 
 ---
@@ -67,6 +71,10 @@ function Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
+      (assignment_statement (identifier) (string_literal))
+      (assignment_statement (identifier) (string_literal))
+      (assignment_statement (identifier) (string_literal))
+      (assignment_statement (identifier) (string_literal))
       (assignment_statement (identifier) (string_literal))
       (assignment_statement (identifier) (string_literal))
       (assignment_statement (identifier) (string_literal))
@@ -78,6 +86,7 @@ Character literals
 
 function Run() {
   a = 'a';
+  a = 'ö';
   a = '\0';
   a = '\t';
   a = '\'';
@@ -88,6 +97,7 @@ function Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
+      (assignment_statement (identifier) (char_literal))
       (assignment_statement (identifier) (char_literal))
       (assignment_statement (identifier) (char_literal))
       (assignment_statement (identifier) (char_literal))

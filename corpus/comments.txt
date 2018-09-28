@@ -1,0 +1,25 @@
+============================================
+Line comments
+============================================
+
+function Run() {
+  a = 123 // foo;
+    ;
+  b
+    //.foo()
+    .bar()
+  ;
+
+  b /*.foo()*/ .bar();
+  b. /*.foo()*/ bar();
+}
+
+---
+
+(program
+  (function (identifier) (parameter_list)
+    (statement_block
+       (assignment_statement (identifier) (number_literal) (comment))
+       (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
+       (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
+       (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list))))))
