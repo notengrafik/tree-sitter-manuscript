@@ -1,7 +1,7 @@
 {
   "name": "tree-sitter-manuscript",
   "version": "0.0.0",
-  "description": "Sibelius ManuScript (Tido-MSS form) grammar for node-tree-sitter",
+  "description": "Sibelius ManuScript grammar for node-tree-sitter",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/tree-sitter generate && npm install && node_modules/.bin/tree-sitter test"

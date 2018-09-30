@@ -1,4 +1,5 @@
 const PREC = {
+  PLG_ARRAY: -2,
   COMMENT: 1,
   BINARY: 11,
   UNARY: 13,
@@ -18,7 +19,13 @@ module.exports = grammar({
   ],
 
   rules: {
-    program: $ => repeat($.function),
+    program: $ => seq(
+      optional('\uFEFF'), // UTF-16 BOM
+      choice(
+        repeat($.function),
+        $.plg_dictionary,
+      )
+    ),
 
     function: $ => seq(
       'function',
@@ -27,7 +34,33 @@ module.exports = grammar({
       $.statement_block
     ),
 
+    plg_dictionary: $ => seq('{', repeat($.plg_def), '}'),
+
+    plg_array: $ => prec(PREC.PLG_ARRAY, seq(
+      seq('{', repeat(choice($.plg_value, $.plg_array)), '}')
+    )),
+
+    plg_def: $ => seq(
+      $.identifier,
+      optional(choice($.plg_dictionary, $.plg_array, $.plg_value, $.plg_function, $.plg_dialog))
+    ),
+
     identifier: $ => new RegExp(identifierPattern),
+
+    plg_value: $ => seq('"', /[^"]*/, '"'),
+
+    plg_dialog: $ => seq('"Dialog"', $.plg_dictionary),
+
+    // To avoid conflicts with plg_array, we make the initial '"(' part of the
+    // plg_parameter_list. This makes the definition of plg_function look like
+    // the quotes are not balanced, but they actually are.
+    plg_function: $ => seq($.plg_parameter_list, $.statement_block, '"'),
+
+    plg_parameter_list: $ => seq(
+      '"(',
+      commaSep($.identifier),
+      ')'
+    ),
 
     parameter_list: $ => seq(
       '(',

@@ -30,5 +30,5 @@ function Run() {
 (program
   (function (identifier) (parameter_list)
     (statement_block
-      (assignment_statement (identifier) (string_literal (ERROR (UNEXPECTED '"'))))
-      (assignment_statement (identifier) (string_literal (ERROR (UNEXPECTED '"')))))))
+      (assignment_statement (identifier) (string_literal (ERROR)))
+      (assignment_statement (identifier) (string_literal (ERROR))))))

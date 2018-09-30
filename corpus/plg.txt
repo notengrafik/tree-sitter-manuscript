@@ -1,0 +1,49 @@
+============================================
+Dialog in plg
+============================================
+﻿
+{
+	testDialog "Dialog"
+	{
+		Title "New Dialog"
+	}
+}
+
+---
+
+(program (plg_dictionary
+  (plg_def (identifier) (plg_dialog
+    (plg_dictionary
+      (plg_def (identifier) (plg_value)))))))
+
+
+============================================
+Plg arrays and dictionaries
+============================================
+
+{
+    n {
+        "a"
+        { "b" }
+    }
+}
+
+---
+
+(program (plg_dictionary
+  (plg_def (identifier) (plg_array
+    (plg_value) (plg_array (plg_value))))))
+
+============================================
+Function in plg
+============================================
+
+{
+    f "() {;}"
+}
+
+---
+
+(program (plg_dictionary
+  (plg_def (identifier) (plg_function
+    (plg_parameter_list) (statement_block (empty_statement))))))
