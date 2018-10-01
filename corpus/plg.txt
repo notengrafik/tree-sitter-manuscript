@@ -62,3 +62,16 @@ Function in plg
 (program (plg_dictionary
   (plg_def (identifier) (plg_function
     (plg_parameter_list) (statement_block (empty_statement))))))
+
+============================================
+GLOBAL.mss
+============================================
+
+foo "bar"
+bar "baz"
+
+---
+
+(program
+  (plg_def (identifier) (plg_value))
+  (plg_def (identifier) (plg_value)))

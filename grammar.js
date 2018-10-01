@@ -22,9 +22,10 @@ module.exports = grammar({
     program: $ => seq(
       optional('\uFEFF'), // UTF-16 BOM
       choice(
-        repeat($.function),
-        $.plg_dictionary,
-        $.plg_dialog_def
+        repeat($.function), // regular .mss files
+        $.plg_dictionary,   // .plg files
+        $.plg_dialog_def,   // .msd files
+        repeat($.plg_def)   // GLOBALS.mss
       )
     ),
 
