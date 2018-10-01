@@ -11,9 +11,25 @@ Dialog in plg
 
 ---
 
-(program (plg_dictionary
-  (plg_dialog_def (identifier) (plg_dictionary
+(program (plg_hash
+  (plg_def (identifier) (plg_value) (plg_hash
     (plg_def (identifier) (plg_value))))))
+
+
+============================================
+Dialog in plg
+============================================
+﻿
+{
+	a "Dialog"
+    b "foobar"
+}
+
+---
+
+(program (plg_hash
+  (plg_def (identifier) (plg_value))
+  (plg_def (identifier) (plg_value))))
 
 
 ============================================
@@ -28,12 +44,12 @@ testDialog "Dialog"
 ---
 
 (program
-  (plg_dialog_def (identifier) (plg_dictionary
+  (plg_def (identifier) (plg_value) (plg_hash
     (plg_def (identifier) (plg_value)))))
 
 
 ============================================
-Plg arrays and dictionaries
+Plg hash tables
 ============================================
 
 {
@@ -45,9 +61,35 @@ Plg arrays and dictionaries
 
 ---
 
-(program (plg_dictionary
-  (plg_def (identifier) (plg_array
-    (plg_value) (plg_array (plg_value))))))
+(program (plg_hash
+  (plg_def (identifier) (plg_hash
+    (plg_value) (plg_hash (plg_value))))))
+
+============================================
+Mixed content hash tables
+============================================
+
+{
+    NewData "foobar"
+    {
+        b "a"
+        {
+             "1"
+             "2"
+        }
+         "00"
+        c "bar"
+    }
+}
+
+---
+
+(program (plg_hash
+  (plg_def (identifier) (plg_value) (plg_hash
+    (plg_def (identifier) (plg_value) (plg_hash
+        (plg_value) (plg_value)))
+    (plg_value)
+    (plg_def (identifier) (plg_value))))))
 
 ============================================
 Function in plg
@@ -59,7 +101,7 @@ Function in plg
 
 ---
 
-(program (plg_dictionary
+(program (plg_hash
   (plg_def (identifier) (plg_function
     (plg_parameter_list) (statement_block (empty_statement))))))
 

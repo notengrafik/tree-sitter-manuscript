@@ -1,5 +1,4 @@
 const PREC = {
-  PLG_ARRAY: -2,
   COMMENT: 1,
   BINARY: 11,
   UNARY: 13,
@@ -23,9 +22,8 @@ module.exports = grammar({
       optional('\uFEFF'), // UTF-16 BOM
       choice(
         repeat($.function), // regular .mss files
-        $.plg_dictionary,   // .plg files
-        $.plg_dialog_def,   // .msd files
-        repeat($.plg_def)   // GLOBALS.mss
+        $.plg_hash,         // .plg files
+        repeat($.plg_def)   // GLOBALS.mss and .msd files
       )
     ),
 
@@ -36,18 +34,20 @@ module.exports = grammar({
       $.statement_block
     ),
 
-    plg_dictionary: $ => seq('{', repeat(choice($.plg_def, $.plg_dialog_def)), '}'),
-
-    plg_array: $ => prec(PREC.PLG_ARRAY, seq(
-      seq('{', repeat(choice($.plg_value, $.plg_array)), '}')
-    )),
-
-    plg_def: $ => seq(
-      $.identifier,
-      optional(choice($.plg_dictionary, $.plg_array, $.plg_value, $.plg_function))
+    plg_hash: $ => seq(
+      '{',
+      repeat(choice($.plg_value, $.plg_def, $.plg_hash)),
+      '}'
     ),
 
-    plg_dialog_def: $ => seq($.identifier, '"Dialog"', $.plg_dictionary),
+    plg_def: $ => prec.right(seq(
+      $.identifier,
+      optional(choice(
+        seq(optional($.plg_value), $.plg_hash),
+        $.plg_value,
+        $.plg_function
+      ))
+    )),
 
     identifier: $ => new RegExp(identifierPattern),
 
