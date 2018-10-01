@@ -12,9 +12,24 @@ Dialog in plg
 ---
 
 (program (plg_dictionary
-  (plg_def (identifier) (plg_dialog
-    (plg_dictionary
-      (plg_def (identifier) (plg_value)))))))
+  (plg_dialog_def (identifier) (plg_dictionary
+    (plg_def (identifier) (plg_value))))))
+
+
+============================================
+Dialog as root in msd files
+============================================
+﻿
+testDialog "Dialog"
+{
+    Title "New Dialog"
+}
+
+---
+
+(program
+  (plg_dialog_def (identifier) (plg_dictionary
+    (plg_def (identifier) (plg_value)))))
 
 
 ============================================

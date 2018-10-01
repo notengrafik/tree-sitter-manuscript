@@ -24,6 +24,7 @@ module.exports = grammar({
       choice(
         repeat($.function),
         $.plg_dictionary,
+        $.plg_dialog_def
       )
     ),
 
@@ -34,7 +35,7 @@ module.exports = grammar({
       $.statement_block
     ),
 
-    plg_dictionary: $ => seq('{', repeat($.plg_def), '}'),
+    plg_dictionary: $ => seq('{', repeat(choice($.plg_def, $.plg_dialog_def)), '}'),
 
     plg_array: $ => prec(PREC.PLG_ARRAY, seq(
       seq('{', repeat(choice($.plg_value, $.plg_array)), '}')
@@ -42,14 +43,14 @@ module.exports = grammar({
 
     plg_def: $ => seq(
       $.identifier,
-      optional(choice($.plg_dictionary, $.plg_array, $.plg_value, $.plg_function, $.plg_dialog))
+      optional(choice($.plg_dictionary, $.plg_array, $.plg_value, $.plg_function))
     ),
+
+    plg_dialog_def: $ => seq($.identifier, '"Dialog"', $.plg_dictionary),
 
     identifier: $ => new RegExp(identifierPattern),
 
     plg_value: $ => seq('"', /[^"]*/, '"'),
-
-    plg_dialog: $ => seq('"Dialog"', $.plg_dictionary),
 
     // To avoid conflicts with plg_array, we make the initial '"(' part of the
     // plg_parameter_list. This makes the definition of plg_function look like
