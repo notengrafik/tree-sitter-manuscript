@@ -21,48 +21,26 @@ module.exports = grammar({
     program: $ => seq(
       optional('\uFEFF'), // UTF-16 BOM
       choice(
-        repeat($.function), // regular .mss files
-        $.plg_hash,         // .plg files
-        repeat($.plg_def)   // GLOBALS.mss and .msd files
+        repeat($.mss_function), // regular .mss files
+        $.plg_function
       )
     ),
 
-    function: $ => seq(
+    // This is how functions are defined in Tido style .mss files
+    mss_function: $ => seq(
       'function',
       $.identifier,
       $.parameter_list,
       $.statement_block
     ),
 
-    plg_hash: $ => seq(
-      '{',
-      repeat(choice($.plg_value, $.plg_def, $.plg_hash)),
-      '}'
+    // This is the entry point for functions in .plg files
+    plg_function: $ => seq(
+      $.parameter_list,
+      $.statement_block
     ),
-
-    plg_def: $ => prec.right(seq(
-      $.identifier,
-      optional(choice(
-        seq(optional($.plg_value), $.plg_hash),
-        $.plg_value,
-        $.plg_function
-      ))
-    )),
 
     identifier: $ => new RegExp(identifierPattern),
-
-    plg_value: $ => seq('"', /[^"]*/, '"'),
-
-    // To avoid conflicts with plg_array, we make the initial '"(' part of the
-    // plg_parameter_list. This makes the definition of plg_function look like
-    // the quotes are not balanced, but they actually are.
-    plg_function: $ => seq($.plg_parameter_list, $.statement_block, '"'),
-
-    plg_parameter_list: $ => seq(
-      '"(',
-      commaSep($.identifier),
-      ')'
-    ),
 
     parameter_list: $ => seq(
       '(',

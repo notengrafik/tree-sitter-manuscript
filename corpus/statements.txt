@@ -12,7 +12,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (field_expression (identifier) (identifier)) (number_literal))
       (assignment_statement (subscript_expression (identifier) (identifier)) (identifier))
@@ -30,7 +30,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (empty_statement))))
 
@@ -49,7 +49,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (if_statement (parenthesized_expression (unary_expression (identifier)))
         (statement_block
@@ -82,7 +82,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (for_statement
         (identifier) (number_literal) (number_literal) (statement_block (empty_statement)))
@@ -111,7 +111,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (while_statement (parenthesized_expression (identifier))
         (statement_block (call_statement (call_expression
@@ -141,7 +141,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (comment)
       (empty_statement)
@@ -173,7 +173,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (switch_statement (parenthesized_expression (identifier))
         (switch_case (parenthesized_expression (number_literal)) (statement_block

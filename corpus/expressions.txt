@@ -10,7 +10,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
        (assignment_statement (identifier) (number_literal))
        (assignment_statement (identifier) (number_literal)))))
@@ -28,7 +28,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (true))
       (assignment_statement (identifier) (false))
@@ -45,7 +45,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (call_statement (call_expression
         (identifier)
@@ -69,7 +69,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (string_literal))
       (assignment_statement (identifier) (string_literal))
@@ -95,7 +95,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (char_literal))
       (assignment_statement (identifier) (char_literal))
@@ -117,7 +117,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (field_expression (identifier) (identifier)))
       (assignment_statement (identifier) (field_expression (identifier) (indirection_expression)))
@@ -141,7 +141,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (field_expression
         (call_expression (identifier) (argument_list))
@@ -184,7 +184,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
       (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
@@ -209,7 +209,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (call_statement (call_expression
         (identifier) (argument_list (binary_expression
@@ -251,7 +251,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
       (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
@@ -280,7 +280,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (binary_expression (string_literal) (identifier))))))
 
@@ -297,7 +297,7 @@ function Run() {
 ---
 
 (program
-  (function (identifier) (parameter_list)
+  (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (indirection_expression) (number_literal))
       (assignment_statement (identifier) (indirection_expression)))))
