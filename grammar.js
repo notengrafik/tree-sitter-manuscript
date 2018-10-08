@@ -50,7 +50,7 @@ module.exports = grammar({
 
     statement_block: $ => seq(
       '{',
-      repeat($._statement),
+      repeat1($._statement),
       '}'
     ),
 
