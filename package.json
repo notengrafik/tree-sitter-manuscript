@@ -1,7 +1,7 @@
 {
-  "name": "tree-sitter-manuscript",
+  "name": "tree-sitter-manuscript-functions",
   "version": "0.0.0",
-  "description": "Sibelius ManuScript grammar for node-tree-sitter",
+  "description": "Sibelius ManuScript function grammar for node-tree-sitter",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/tree-sitter generate && npm install && node_modules/.bin/tree-sitter test"
@@ -15,11 +15,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:notengrafik/tree-sitter-manuscript.git"
+    "url": "git@github.com:notengrafik/tree-sitter-manuscript-functions.git"
   },
   "keywords": [
     "parser",
     "lexer"
   ],
-  "homepage": "https://github.com/notengrafik/tree-sitter-manuscript"
+  "homepage": "https://github.com/notengrafik/tree-sitter-manuscript-functions"
 }
