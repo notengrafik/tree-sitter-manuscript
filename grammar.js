@@ -184,7 +184,10 @@ module.exports = grammar({
       ']'
     ),
 
-    call_expression: $ => prec(PREC.CALL, seq($._expression, $.argument_list)),
+    call_expression: $ => prec(PREC.CALL, seq(
+      choice($.identifier, $.field_expression),
+      $.argument_list
+    )),
 
     field_expression: $ => seq(
         choice($.identifier, $.field_expression, $.subscript_expression, $.call_expression),

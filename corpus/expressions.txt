@@ -40,6 +40,7 @@ Function calls
 
 function Run() {
   CreateSparseArray(1, a);
+  a.@b();
 }
 
 ---
@@ -49,7 +50,35 @@ function Run() {
     (statement_block
       (call_statement (call_expression
         (identifier)
-        (argument_list (number_literal) (identifier)))))))
+        (argument_list (number_literal) (identifier))))
+      (call_statement (call_expression
+        (field_expression (identifier) (indirection_expression))
+        (argument_list))))))
+
+============================================
+Invalid function calls
+============================================
+
+function Run() {
+  foo()();
+  foo[1]();
+}
+
+---
+
+(program
+  (mss_function (identifier) (parameter_list)
+    (statement_block
+      (call_statement
+        (call_expression
+          (identifier)
+          (argument_list))
+        (ERROR))
+      (ERROR
+        (subscript_expression
+          (identifier)
+          (number_literal)))
+      (empty_statement))))
 
 ============================================
 String literals
