@@ -1,5 +1,6 @@
 const PREC = {
   COMMENT: 1,
+  STRING: 2,
   BINARY: 11,
   UNARY: 13,
   CALL: 14,
@@ -217,7 +218,7 @@ module.exports = grammar({
     string_literal: $ => seq(
       "'",
       repeat(choice(
-        token.immediate(repeat1(/[^'"\\]/)),
+        token.immediate(prec(PREC.STRING, repeat1(/[^'"\\]/))),
         token.immediate(/\\[^"]/)
       )),
       "'"

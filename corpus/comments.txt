@@ -12,6 +12,8 @@ function Run() {
 
   b /*.foo()*/ .bar();
   b. /*.foo()*/ bar();
+
+  c = '//Test';
 }
 
 ---
@@ -22,4 +24,6 @@ function Run() {
        (assignment_statement (identifier) (number_literal) (comment))
        (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
        (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
-       (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list))))))
+       (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
+       (assignment_statement (identifier) (string_literal)))))
+
