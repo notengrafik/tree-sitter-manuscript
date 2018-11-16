@@ -40,6 +40,7 @@ Function calls
 
 function Run() {
   CreateSparseArray(1, a);
+  @f();
   a.@b();
 }
 
@@ -52,7 +53,9 @@ function Run() {
         (identifier)
         (argument_list (number_literal) (identifier))))
       (call_statement (call_expression
-        (field_expression (identifier) (indirection_expression))
+        (indirection_expression) (argument_list)))
+      (call_statement (call_expression
+        (indirection_field_expression (identifier) (indirection_expression))
         (argument_list))))))
 
 ============================================
@@ -149,7 +152,7 @@ function Run() {
   (mss_function (identifier) (parameter_list)
     (statement_block
       (assignment_statement (identifier) (field_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (field_expression (identifier) (indirection_expression)))
+      (assignment_statement (identifier) (indirection_field_expression (identifier) (indirection_expression)))
       (assignment_statement (identifier) (subscript_expression (identifier) (identifier)))
       (assignment_statement (identifier) (user_property_expression
         (subscript_expression (identifier) (number_literal))

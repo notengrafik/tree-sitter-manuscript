@@ -4,6 +4,8 @@ Invalid field access
 
 function Run() {
   a = a[0][0];
+  a = f().@b;
+  a = a.@b.@c;
 }
 
 ---
@@ -14,7 +16,16 @@ function Run() {
       (ERROR (subscript_expression
         (identifier)
         (ERROR (subscript_expression (identifier) (number_literal)))
-        (number_literal))) (empty_statement))))
+        (number_literal)))
+      (empty_statement)
+      (assignment_statement
+        (identifier)
+        (call_expression (identifier) (argument_list))
+        (ERROR (indirection_expression)))
+      (assignment_statement
+        (identifier)
+        (indirection_field_expression (identifier) (indirection_expression))
+        (ERROR (indirection_expression))))))
 
 ============================================
 Invalid strings

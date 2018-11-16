@@ -72,6 +72,7 @@ module.exports = grammar({
         $.identifier,
         $.indirection_expression,
         $.field_expression,
+        $.indirection_field_expression,
         $.subscript_expression,
         $.user_property_expression
       ),
@@ -155,6 +156,7 @@ module.exports = grammar({
       $.subscript_expression,
       $.call_expression,
       $.field_expression,
+      $.indirection_field_expression,
       $.user_property_expression,
       $.indirection_expression,
       $.identifier,
@@ -186,14 +188,31 @@ module.exports = grammar({
     ),
 
     call_expression: $ => prec(PREC.CALL, seq(
-      choice($.identifier, $.field_expression),
+      choice(
+        $.identifier,
+        $.field_expression,
+        $.indirection_field_expression,
+        $.indirection_expression
+      ),
       $.argument_list
     )),
 
     field_expression: $ => seq(
-        choice($.identifier, $.field_expression, $.subscript_expression, $.call_expression),
+        choice(
+          $.identifier,
+          $.field_expression,
+          $.subscript_expression,
+          $.call_expression,
+          $.indirection_field_expression
+        ),
         '.',
-        choice($.identifier, $.indirection_expression)
+        $.identifier
+    ),
+
+    indirection_field_expression: $ => seq(
+      choice($.identifier, $.field_expression, $.subscript_expression),
+      '.',
+      $.indirection_expression
     ),
 
     user_property_expression: $ => seq(
