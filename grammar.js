@@ -203,6 +203,7 @@ module.exports = grammar({
           $.field_expression,
           $.subscript_expression,
           $.call_expression,
+          $.indirection_expression,
           $.indirection_field_expression
         ),
         '.',
