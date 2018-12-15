@@ -239,7 +239,8 @@ module.exports = grammar({
       "'",
       repeat(choice(
         token.immediate(prec(PREC.STRING, repeat1(/[^'"\\]/))),
-        token.immediate(/\\[^"]/)
+        token.immediate(/\\[^"]/),
+        token.immediate('""')
       )),
       "'"
     ),
