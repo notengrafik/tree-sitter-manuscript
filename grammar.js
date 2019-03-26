@@ -107,7 +107,7 @@ module.exports = grammar({
 
     switch_case: $ => seq(
       'case',
-      $.parenthesized_expression,
+      $._expression,
       $.statement_block
     ),
 

@@ -161,7 +161,7 @@ function Run() {
     case (2) {
       something();
     }
-    case ('three') {
+    case 'three' {
       somethingElse();
     }
     default {
@@ -180,7 +180,7 @@ function Run() {
             (empty_statement)))
         (switch_case (parenthesized_expression (number_literal)) (statement_block
           (call_statement (call_expression (identifier) (argument_list)))))
-        (switch_case (parenthesized_expression (string_literal)) (statement_block
+        (switch_case (string_literal) (statement_block
           (call_statement (call_expression (identifier) (argument_list)))))
         (switch_default (statement_block
           (return_statement (number_literal))))))))
