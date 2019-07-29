@@ -152,6 +152,7 @@ function Run() {
   a = b.@c;
   a = @b.c;
   a = q[data3];
+  a = @b._property:c;
   a = b[0]._property:c;
 }
 
@@ -164,6 +165,7 @@ function Run() {
       (assignment_statement (identifier) (indirection_field_expression (identifier) (indirection_expression)))
       (assignment_statement (identifier) (field_expression (indirection_expression) (identifier)))
       (assignment_statement (identifier) (subscript_expression (identifier) (identifier)))
+      (assignment_statement (identifier) (user_property_expression (indirection_expression) (identifier)))
       (assignment_statement (identifier) (user_property_expression
         (subscript_expression (identifier) (number_literal))
         (identifier))))))
