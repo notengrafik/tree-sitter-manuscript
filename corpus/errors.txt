@@ -55,4 +55,4 @@ function Run() {
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block (empty_statement (MISSING)))))
+    (statement_block (empty_statement (MISSING ";")))))

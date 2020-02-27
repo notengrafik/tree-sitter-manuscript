@@ -4,11 +4,12 @@
   "description": "Sibelius ManuScript function grammar for node-tree-sitter",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/tree-sitter generate && npm install && node_modules/.bin/tree-sitter test"
+    "build": "node_modules/.bin/tree-sitter generate && node-gyp configure && node-gyp build",
+    "test": "node_modules/.bin/tree-sitter generate && node-gyp configure && node-gyp build && node_modules/.bin/tree-sitter test"
   },
   "author": "Thomas Weber",
   "devDependencies": {
-    "tree-sitter-cli": "^0.13.10"
+    "tree-sitter-cli": "^0.16.4"
   },
   "dependencies": {
     "nan": "^2.11.0"
