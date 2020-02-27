@@ -123,6 +123,7 @@ module.exports = grammar({
       $._expression,
       'to',
       $._expression,
+      optional(seq('step', $._expression)),
       $.statement_block
     ),
 

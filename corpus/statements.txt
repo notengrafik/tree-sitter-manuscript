@@ -70,6 +70,10 @@ function Run() {
     ;
   }
 
+  for i = 4 to 0 step -2 {
+    ;
+  }
+
   for each a in b {
     ;
   }
@@ -90,6 +94,12 @@ function Run() {
         (identifier)
         (field_expression (identifier) (identifier))
         (call_expression (identifier) (argument_list))
+        (statement_block (empty_statement)))
+      (for_statement
+        (identifier)
+        (number_literal)
+        (number_literal)
+        (unary_expression (number_literal))
         (statement_block (empty_statement)))
       (for_each_statement
         (identifier) (identifier) (statement_block
