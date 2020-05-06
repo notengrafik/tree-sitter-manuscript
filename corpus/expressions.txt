@@ -5,6 +5,15 @@ Number literals
 function Run() {
   a = 123;
   b = 0.123;
+  c = 1.1e1;
+  d = 2e+2;
+  e = 3e-3;
+  f = 4E4;
+  g = 5E+5;
+  h = 6E-6;
+  i = 7E;
+  j = 8E-;
+  k = 9e+;
 }
 
 ---
@@ -12,6 +21,15 @@ function Run() {
 (program
   (mss_function (identifier) (parameter_list)
     (statement_block
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal))
+       (assignment_statement (identifier) (number_literal))
        (assignment_statement (identifier) (number_literal))
        (assignment_statement (identifier) (number_literal)))))
 
