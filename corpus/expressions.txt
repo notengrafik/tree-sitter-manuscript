@@ -14,24 +14,23 @@ function Run() {
   i = 7E;
   j = 8E-;
   k = 9e+;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal))
-       (assignment_statement (identifier) (number_literal)))))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))
+     (assignment_statement (identifier) (number_literal))))
 
 ============================================
 Common constants
@@ -41,16 +40,15 @@ function Run() {
   a = true;
   b = false;
   c = null;
-}
+}//$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (true))
-      (assignment_statement (identifier) (false))
-      (assignment_statement (identifier) (null)))))
+    (assignment_statement (identifier) (true))
+    (assignment_statement (identifier) (false))
+    (assignment_statement (identifier) (null))))
 
 ============================================
 Function calls
@@ -62,23 +60,23 @@ function Run() {
   a.@b();
   @a.b();
 }
+//$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (call_statement (call_expression
-        (identifier)
-        (argument_list (number_literal) (identifier))))
-      (call_statement (call_expression
-        (indirection_expression) (argument_list)))
-      (call_statement (call_expression
-        (indirection_field_expression (identifier) (indirection_expression))
-        (argument_list)))
-      (call_statement (call_expression
-        (field_expression (indirection_expression) (identifier))
-        (argument_list))))))
+    (call_statement (call_expression
+      (identifier)
+      (argument_list (number_literal) (identifier))))
+    (call_statement (call_expression
+      (indirection_expression) (argument_list)))
+    (call_statement (call_expression
+      (indirection_field_expression (identifier) (indirection_expression))
+      (argument_list)))
+    (call_statement (call_expression
+      (field_expression (indirection_expression) (identifier))
+      (argument_list)))))
 
 ============================================
 Invalid function calls
@@ -87,23 +85,22 @@ Invalid function calls
 function Run() {
   foo()();
   foo[1]();
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (call_statement
-        (call_expression
-          (identifier)
-          (argument_list))
-        (ERROR))
-      (ERROR
-        (subscript_expression
-          (identifier)
-          (number_literal)))
-      (empty_statement))))
+    (call_statement
+      (call_expression
+        (identifier)
+        (argument_list))
+      (ERROR))
+    (ERROR
+      (subscript_expression
+        (identifier)
+        (number_literal)))
+    (empty_statement)))
 
 ============================================
 String literals
@@ -120,23 +117,22 @@ function Run() {
   a = '\0\1';
   a = '""';
   a = 'x""x';
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal))
-      (assignment_statement (identifier) (string_literal)))))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))
+    (assignment_statement (identifier) (string_literal))))
 
 ============================================
 Character literals
@@ -148,18 +144,17 @@ function Run() {
   a = '\0';
   a = '\t';
   a = '\'';
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (char_literal))
-      (assignment_statement (identifier) (char_literal))
-      (assignment_statement (identifier) (char_literal))
-      (assignment_statement (identifier) (char_literal))
-      (assignment_statement (identifier) (char_literal)))))
+    (assignment_statement (identifier) (char_literal))
+    (assignment_statement (identifier) (char_literal))
+    (assignment_statement (identifier) (char_literal))
+    (assignment_statement (identifier) (char_literal))
+    (assignment_statement (identifier) (char_literal))))
 
 ============================================
 Field access
@@ -172,21 +167,20 @@ function Run() {
   a = q[data3];
   a = @b._property:c;
   a = b[0]._property:c;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (field_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (indirection_field_expression (identifier) (indirection_expression)))
-      (assignment_statement (identifier) (field_expression (indirection_expression) (identifier)))
-      (assignment_statement (identifier) (subscript_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (user_property_expression (indirection_expression) (identifier)))
-      (assignment_statement (identifier) (user_property_expression
-        (subscript_expression (identifier) (number_literal))
-        (identifier))))))
+    (assignment_statement (identifier) (field_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (indirection_field_expression (identifier) (indirection_expression)))
+    (assignment_statement (identifier) (field_expression (indirection_expression) (identifier)))
+    (assignment_statement (identifier) (subscript_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (user_property_expression (indirection_expression) (identifier)))
+    (assignment_statement (identifier) (user_property_expression
+      (subscript_expression (identifier) (number_literal))
+      (identifier)))))
 
 ============================================
 Field access with call expressions
@@ -198,39 +192,38 @@ function Run() {
   a = b.f().foo();
   a = f()[0];
   a = x.f(2, a.b().c, 'foo');
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (field_expression
+    (assignment_statement (identifier) (field_expression
+      (call_expression (identifier) (argument_list))
+      (identifier)))
+    (assignment_statement (identifier) (call_expression
+      (field_expression
         (call_expression (identifier) (argument_list))
-        (identifier)))
-      (assignment_statement (identifier) (call_expression
+        (identifier))
+      (argument_list)))
+    (assignment_statement (identifier) (call_expression
+      (field_expression
+        (call_expression (field_expression (identifier) (identifier)) (argument_list))
+        (identifier))
+      (argument_list)))
+    (assignment_statement (identifier) (subscript_expression
+      (call_expression (identifier) (argument_list))
+      (number_literal)))
+    (assignment_statement (identifier) (call_expression
+      (field_expression (identifier) (identifier))
+      (argument_list
+        (number_literal)
         (field_expression
-          (call_expression (identifier) (argument_list))
+          (call_expression
+            (field_expression (identifier) (identifier))
+            (argument_list))
           (identifier))
-        (argument_list)))
-      (assignment_statement (identifier) (call_expression
-        (field_expression
-          (call_expression (field_expression (identifier) (identifier)) (argument_list))
-          (identifier))
-        (argument_list)))
-      (assignment_statement (identifier) (subscript_expression
-        (call_expression (identifier) (argument_list))
-        (number_literal)))
-      (assignment_statement (identifier) (call_expression
-        (field_expression (identifier) (identifier))
-        (argument_list
-          (number_literal)
-          (field_expression
-            (call_expression
-              (field_expression (identifier) (identifier))
-              (argument_list))
-            (identifier))
-          (string_literal)))))))
+        (string_literal))))))
 
 ============================================
 Boolean operators
@@ -241,21 +234,20 @@ function Run() {
   a = i and j;
   a = not b;
   a = not a and not b or not c and not d;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (unary_expression (identifier)))
-      (assignment_statement (identifier) (binary_expression
-        (binary_expression
-          (binary_expression (unary_expression (identifier)) (unary_expression (identifier)))
-          (unary_expression (identifier)))
-        (unary_expression (identifier)))))))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (unary_expression (identifier)))
+    (assignment_statement (identifier) (binary_expression
+      (binary_expression
+        (binary_expression (unary_expression (identifier)) (unary_expression (identifier)))
+        (unary_expression (identifier)))
+      (unary_expression (identifier))))))
 
 
 ============================================
@@ -266,27 +258,26 @@ function Run() {
   Trace(1 + 2 = 3);
   Trace(3 = 1 + 2);
   a = -a / b + c * -d;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (call_statement (call_expression
-        (identifier) (argument_list (binary_expression
-            (binary_expression (number_literal) (number_literal))
-            (number_literal)))))
-      (call_statement (call_expression
-        (identifier) (argument_list (binary_expression
-            (binary_expression (number_literal) (number_literal))
-            (number_literal)))))
-      (assignment_statement (identifier) (binary_expression
-        (binary_expression
-            (binary_expression
-                (unary_expression (identifier)) (identifier))
-            (identifier))
-        (unary_expression (identifier)))))))
+    (call_statement (call_expression
+      (identifier) (argument_list (binary_expression
+          (binary_expression (number_literal) (number_literal))
+          (number_literal)))))
+    (call_statement (call_expression
+      (identifier) (argument_list (binary_expression
+          (binary_expression (number_literal) (number_literal))
+          (number_literal)))))
+    (assignment_statement (identifier) (binary_expression
+      (binary_expression
+          (binary_expression
+              (unary_expression (identifier)) (identifier))
+          (identifier))
+      (unary_expression (identifier))))))
 
 
 ============================================
@@ -308,27 +299,26 @@ function Run() {
   a = a & b;
   a = a and b;
   a = a or b;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
-      (assignment_statement (identifier) (binary_expression (identifier) (identifier))))))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))
+    (assignment_statement (identifier) (binary_expression (identifier) (identifier)))))
 
 
 ============================================
@@ -337,14 +327,13 @@ String concatenation
 
 function Run() {
   a = 'ab' + c;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (binary_expression (string_literal) (identifier))))))
+    (assignment_statement (identifier) (binary_expression (string_literal) (identifier)))))
 
 
 ============================================
@@ -354,12 +343,11 @@ Indirection
 function Run() {
   @a = 1;
   b = @a;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (indirection_expression) (number_literal))
-      (assignment_statement (identifier) (indirection_expression)))))
+    (assignment_statement (indirection_expression) (number_literal))
+    (assignment_statement (identifier) (indirection_expression))))

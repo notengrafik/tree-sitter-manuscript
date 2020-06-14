@@ -6,26 +6,25 @@ function Run() {
   a = a[0][0];
   a = f().@b;
   a = a.@b.@c;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (ERROR (subscript_expression
-        (identifier)
-        (ERROR (subscript_expression (identifier) (number_literal)))
-        (number_literal)))
-      (empty_statement)
-      (assignment_statement
-        (identifier)
-        (call_expression (identifier) (argument_list))
-        (ERROR (indirection_expression)))
-      (assignment_statement
-        (identifier)
-        (indirection_field_expression (identifier) (indirection_expression))
-        (ERROR (indirection_expression))))))
+    (ERROR (subscript_expression
+      (identifier)
+      (ERROR (subscript_expression (identifier) (number_literal)))
+      (number_literal)))
+    (empty_statement)
+    (assignment_statement
+      (identifier)
+      (call_expression (identifier) (argument_list))
+      (ERROR (indirection_expression)))
+    (assignment_statement
+      (identifier)
+      (indirection_field_expression (identifier) (indirection_expression))
+      (ERROR (indirection_expression)))))
 
 ============================================
 Invalid strings
@@ -34,25 +33,25 @@ Invalid strings
 function Run() {
   a = 'foo"';
   a = '"';
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (identifier) (string_literal (ERROR (UNEXPECTED '''))))
-      (assignment_statement (identifier) (string_literal (ERROR (UNEXPECTED ''')))))))
+    (assignment_statement (identifier) (string_literal (ERROR (UNEXPECTED '''))))
+    (assignment_statement (identifier) (string_literal (ERROR (UNEXPECTED '''))))))
 
 ============================================
 Missing statement
 ============================================
 
 function Run() {
-}
+} //$end
 
 ---
 
 (program
-  (mss_function (identifier) (parameter_list)
-    (statement_block (empty_statement (MISSING ";")))))
+  (ERROR (identifier) (parameter_list))
+  (ERROR)
+  (comment))

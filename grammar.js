@@ -32,7 +32,9 @@ module.exports = grammar({
       'function',
       $.identifier,
       $.parameter_list,
-      $.statement_block
+      '{',
+      repeat1($._statement),
+      /\}\s*\/\/\$end/
     ),
 
     // This is the entry point for functions in .plg files

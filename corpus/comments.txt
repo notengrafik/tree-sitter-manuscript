@@ -14,16 +14,14 @@ function Run() {
   b. /*.foo()*/ bar();
 
   c = '//Test';
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-       (assignment_statement (identifier) (number_literal) (comment))
-       (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
-       (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
-       (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
-       (assignment_statement (identifier) (string_literal)))))
-
+     (assignment_statement (identifier) (number_literal) (comment))
+     (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
+     (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
+     (call_statement (call_expression (field_expression (identifier) (comment) (identifier)) (argument_list)))
+     (assignment_statement (identifier) (string_literal))))

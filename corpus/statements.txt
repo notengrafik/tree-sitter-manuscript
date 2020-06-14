@@ -7,17 +7,16 @@ function Run() {
   h[i] = j;
   Self._property:a = b;
   a = 1 = 2;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (assignment_statement (field_expression (identifier) (identifier)) (number_literal))
-      (assignment_statement (subscript_expression (identifier) (identifier)) (identifier))
-      (assignment_statement (user_property_expression (identifier) (identifier)) (identifier))
-      (assignment_statement (identifier) (binary_expression (number_literal) (number_literal))))))
+    (assignment_statement (field_expression (identifier) (identifier)) (number_literal))
+    (assignment_statement (subscript_expression (identifier) (identifier)) (identifier))
+    (assignment_statement (user_property_expression (identifier) (identifier)) (identifier))
+    (assignment_statement (identifier) (binary_expression (number_literal) (number_literal)))))
 
 ============================================
 Empty statements
@@ -25,14 +24,13 @@ Empty statements
 
 function Run() {
   ;
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (empty_statement))))
+      (empty_statement)))
 
 ============================================
 If statements
@@ -44,18 +42,17 @@ function Run() {
   } else {
     a = 3;
   }
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (if_statement (parenthesized_expression (unary_expression (identifier)))
-        (statement_block
-          (assignment_statement (identifier) (number_literal)))
-        (statement_block
-          (assignment_statement (identifier) (number_literal)))))))
+    (if_statement (parenthesized_expression (unary_expression (identifier)))
+      (statement_block
+        (assignment_statement (identifier) (number_literal)))
+      (statement_block
+        (assignment_statement (identifier) (number_literal))))))
 
 ============================================
 For loops
@@ -81,32 +78,31 @@ function Run() {
   for each NoteRest a in selection {
     ;
   }
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (for_statement
-        (identifier) (number_literal) (number_literal) (statement_block (empty_statement)))
-      (for_statement
-        (identifier)
-        (field_expression (identifier) (identifier))
-        (call_expression (identifier) (argument_list))
-        (statement_block (empty_statement)))
-      (for_statement
-        (identifier)
-        (number_literal)
-        (number_literal)
-        (unary_expression (number_literal))
-        (statement_block (empty_statement)))
-      (for_each_statement
-        (identifier) (identifier) (statement_block
-          (empty_statement)))
-      (for_each_statement
-        (identifier) (identifier) (identifier) (statement_block
-          (empty_statement))))))
+    (for_statement
+      (identifier) (number_literal) (number_literal) (statement_block (empty_statement)))
+    (for_statement
+      (identifier)
+      (field_expression (identifier) (identifier))
+      (call_expression (identifier) (argument_list))
+      (statement_block (empty_statement)))
+    (for_statement
+      (identifier)
+      (number_literal)
+      (number_literal)
+      (unary_expression (number_literal))
+      (statement_block (empty_statement)))
+    (for_each_statement
+      (identifier) (identifier) (statement_block
+        (empty_statement)))
+    (for_each_statement
+      (identifier) (identifier) (identifier) (statement_block
+        (empty_statement)))))
 
 ============================================
 While loops
@@ -116,17 +112,16 @@ function Run() {
   while (x) {
     Trace('hi');
   }
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (while_statement (parenthesized_expression (identifier))
-        (statement_block (call_statement (call_expression
-          (identifier)
-          (argument_list (string_literal)))))))))
+    (while_statement (parenthesized_expression (identifier))
+      (statement_block (call_statement (call_expression
+        (identifier)
+        (argument_list (string_literal))))))))
 
 
 ============================================
@@ -145,19 +140,17 @@ function Run() {
   ;
 
   // one-line comment
-}
-
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (comment)
-      (empty_statement)
-      (comment)
-      (empty_statement)
-      (comment))))
+    (comment)
+    (empty_statement)
+    (comment)
+    (empty_statement)
+    (comment)))
 
 ============================================
 Switch statements
@@ -178,19 +171,18 @@ function Run() {
       return 4;
     }
   }
-}
+} //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
-    (statement_block
-      (switch_statement (parenthesized_expression (identifier))
-        (switch_case (parenthesized_expression (number_literal)) (statement_block
-            (empty_statement)))
-        (switch_case (parenthesized_expression (number_literal)) (statement_block
-          (call_statement (call_expression (identifier) (argument_list)))))
-        (switch_case (string_literal) (statement_block
-          (call_statement (call_expression (identifier) (argument_list)))))
-        (switch_default (statement_block
-          (return_statement (number_literal))))))))
+    (switch_statement (parenthesized_expression (identifier))
+      (switch_case (parenthesized_expression (number_literal)) (statement_block
+          (empty_statement)))
+      (switch_case (parenthesized_expression (number_literal)) (statement_block
+        (call_statement (call_expression (identifier) (argument_list)))))
+      (switch_case (string_literal) (statement_block
+        (call_statement (call_expression (identifier) (argument_list)))))
+      (switch_default (statement_block
+        (return_statement (number_literal)))))))
