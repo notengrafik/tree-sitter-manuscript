@@ -231,7 +231,7 @@ module.exports = grammar({
 
     argument_list: $ => seq('(', commaSep($._expression), ')'),
 
-    number_literal: $ => /\d+(\.\d+)?([eE][+\-]?\d*)?/,
+    number_literal: $ => /\d+(\.\d*)?([eE][+\-]?\d*)?/,
 
     _char: $ => choice(
       /[^'"\\]/,

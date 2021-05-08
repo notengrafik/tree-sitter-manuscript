@@ -14,12 +14,14 @@ function Run() {
   i = 7E;
   j = 8E-;
   k = 9e+;
+  l = 0.;
 } //$end
 
 ---
 
 (program
   (mss_function (identifier) (parameter_list)
+     (assignment_statement (identifier) (number_literal))
      (assignment_statement (identifier) (number_literal))
      (assignment_statement (identifier) (number_literal))
      (assignment_statement (identifier) (number_literal))
